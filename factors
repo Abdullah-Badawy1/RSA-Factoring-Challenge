@@ -1,0 +1,31 @@
+from sys import argv
+
+
+def factorize(value):
+    """Print a simple decomposition of an integer > 1"""
+    if value < 2:
+        return
+    print()
+    print(value, "<- value-bef")
+
+    for i in range(2, value + 1):
+        if value % i == 0:
+            print("{:.0f}={:.0f}*{:.0f}".format(value, value / i, i))
+            break
+
+    print(value, "<- value-aft")
+    print()
+
+
+if len(argv) != 2:
+    exit()
+
+try:
+    with open(argv[1]) as file:
+        for line in file:
+            value = int(line.strip())
+            factorize(value)
+except FileNotFoundError:
+    print("File not found.")
+except ValueError:
+    print("Invalid input in the file.")
